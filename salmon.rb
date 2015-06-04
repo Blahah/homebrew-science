@@ -1,10 +1,11 @@
 class Salmon < Formula
   homepage "https://github.com/COMBINE-lab/salmon"
+  desc "Transcript-level quantification from RNA-seq reads"
   # tag "bioinformatics"
 
   url "https://github.com/COMBINE-lab/salmon/archive/v0.4.0.tar.gz"
   sha256 "bbeebdaed11e0b79c32bc6620617749d89e116bf1312e75751a78e438a17fb27"
-  head "https://github.com/COMBINE-lab/salmon.git", :branch => "master"
+  head "https://github.com/COMBINE-lab/salmon.git"
 
   bottle do
     root_url "https://downloads.sf.net/project/machomebrew/Bottles/science"
@@ -22,7 +23,8 @@ class Salmon < Formula
   def install
     # Fix error: Unable to find the requested Boost libraries.
     ENV.deparallelize
-
+    ENV.libstdcxx
+    
     system "cmake", ".", *std_cmake_args
     system "make", "install"
   end
